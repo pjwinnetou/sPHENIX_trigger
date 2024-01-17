@@ -91,22 +91,6 @@ void triggerEff::Loop()
 
 triggerEff::TriggerResult triggerEff::AnalyzeEvent(vector<int> *eta_bin,vector<int> *phi_bin, vector<float> *energy, double threshold, int clusterSize, bool allowOverlap) {
   TriggerResult result = {0, 0.0, -1, -1};
-  std::set<std::pair<int, int>> usedTowers;
-
-  int nClusters = 23529;
-  if(allowOverlap){
-    if(clusterSize==2) nClusters = 24225;
-    else if(clusterSize==4) nClusters = 23529;
-    else if(clusterSize==8) nClusters = 22161;
-    else{ std::cerr << "ERROR incorrect cluster size"; exit(1);}
-  }
-  else if(!allowOverlap){
-    if(clusterSize==2) nClusters = 6144;
-    else if(clusterSize==4) nClusters = 1536;
-    else if(clusterSize==8) nClusters = 384;
-    else{ std::cerr << "ERROR incorrect cluster size"; exit(1);}
-  }
-
   int stepSize = allowOverlap ? 1 : clusterSize;
 
   for (int startEta = 0; startEta <= GRID_ETA - clusterSize; startEta += stepSize) {
