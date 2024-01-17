@@ -1,0 +1,12 @@
+Universe        = vanilla
+Executable      = runscript.sh
+Arguments       = $(seg)
+Input           = /dev/null
+Initialdir      = /sphenix/user/jpark4/sPHENIX_software/MakeTTreeCalib/run/TriggerAna/
+Output          = /sphenix/user/jpark4/sPHENIX_software/MakeTTreeCalib/run/TriggerAna/log/output_$(seg).out
+Log             = /sphenix/user/jpark4/sPHENIX_software/MakeTTreeCalib/run/TriggerAna/log/log_$(seg).log
+Error           = /sphenix/user/jpark4/sPHENIX_software/MakeTTreeCalib/run/TriggerAna/log/error_$(seg).err
+PeriodicHold    = (NumJobStarts>=1 && JobStatus == 1)
+request_memory  = 4096MB
+Notification    = Error
+Queue seg from SinglePhotonDSTlist.list 
